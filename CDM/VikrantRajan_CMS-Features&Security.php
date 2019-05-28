@@ -190,4 +190,45 @@ if($count == 0) {
 <?php } // Opening the php tag starts the loop again until here
 		} // end of else statement
 } // end of $_POST['submit]
+
+
+?>
+
+ <!-- *************** DYNAMIC COMMENT SYSTEM ***************** -->
+ <?php 
+                
+                // ONLY IF THE USER IS LOGGED IN THEY CAN LEAVE A COMMENT ELSE THEY HAVE TO SIGN UP
+if(isset($_SESSION['user_role'])) {
+    ?>
+ <div class="well">
+     <h4>Leave a Comment:</h4>
+     <form action="" method="post" role="form">
+         <div class="form-group">
+             <input value="<?= $_SESSION['user_name']; ?>" class="form-control" type="hidden" name="comment_author"
+                 readonly>
+         </div>
+         <div class="form-group">
+             <input value="<?= $_SESSION['user_email']; ?>" class="form-control" type="hidden" name="comment_email"
+                 readonly>
+         </div>
+         <div class="form-group">
+
+             <textarea name="comment_content" class="form-control" rows="3"></textarea>
+         </div>
+         <button type="submit" name="create_comment" class="btn btn-primary">Submit</button>
+     </form>
+ </div>
+ <?php
+    // if(isset($_GET['p_id'])) {
+
+    //     $the_post_id = $_GET['p_id'];
+        
+    //     echo "<li><a href='registration.php'>Sign Up To Leave A Review</a></li>";
+    // }     echo "<a class='btn btn-primary' href='register.php?p_id={$other_post_id}'>Sign Up To Leave A Review</a>";
+
+} else {
+    echo "<a class='btn btn-primary' href='index.php?controller=pages&action=registerUser'>Sign Up To Leave A Review</a>";
+}
+
+
 ?>
