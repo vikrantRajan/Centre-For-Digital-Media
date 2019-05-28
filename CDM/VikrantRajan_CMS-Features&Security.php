@@ -219,12 +219,6 @@ if(isset($_SESSION['user_role'])) {
      </form>
  </div>
  <?php
-    // if(isset($_GET['p_id'])) {
-
-    //     $the_post_id = $_GET['p_id'];
-        
-    //     echo "<li><a href='registration.php'>Sign Up To Leave A Review</a></li>";
-    // }     echo "<a class='btn btn-primary' href='register.php?p_id={$other_post_id}'>Sign Up To Leave A Review</a>";
 
 } else {
     echo "<a class='btn btn-primary' href='index.php?controller=pages&action=registerUser'>Sign Up To Leave A Review</a>";
