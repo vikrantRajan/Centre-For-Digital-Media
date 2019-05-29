@@ -223,6 +223,47 @@ if(isset($_SESSION['user_role'])) {
 } else {
     echo "<a class='btn btn-primary' href='index.php?controller=pages&action=registerUser'>Sign Up To Leave A Review</a>";
 }
-
-
 ?>
+
+<!--************************************ DYNAMIC JAVASCRIPT CHART TO SHOW WEBSITE DETAILS IN ADMIN ************************************-->
+<div class="row">
+                <script type="text/javascript">
+                google.charts.load('current', {
+                    'packages': ['bar']
+                });
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Data', 'Count'],
+
+                        <?php 
+                        
+                        $element_text = ['All Posts', 'Active Posts','Draft Posts', 'Comments', 'Pending Comments', 'Users', 'Subscribers', 'Categories'];
+                        $element_count = [$post_count, $post_published_count, $post_draft_count, $comment_count, $unapproved_comments_count, $user_count, $subscribers_count, $categories_count];
+                        for($i =0;$i < 8; $i++) {
+
+                            echo "['{$element_text[$i]}'" . " ," . "{$element_count[$i]}],";
+
+                        }
+                        ?>
+                        // ['Posts', 1000],
+                    ]);
+
+                    var options = {
+                        chart: {
+                            title: '',
+                            subtitle: '',
+                        }
+                    };
+
+                    var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+                    chart.draw(data, google.charts.Bar.convertOptions(options));
+                }
+                </script>
+                <div id="columnchart_material" style="width: 'auto'; height: 500px;"></div>
+
+            </div>
+
+
