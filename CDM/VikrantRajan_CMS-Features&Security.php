@@ -226,6 +226,28 @@ if(isset($_SESSION['user_role'])) {
 ?>
 
 <!--************************************ DYNAMIC JAVASCRIPT CHART TO SHOW WEBSITE DETAILS IN ADMIN ************************************-->
+<?php
+
+            $query = "SELECT * FROM posts WHERE post_status = 'Draft'";
+            $select_all_draft_posts = mysqli_query($connection, $query);
+            $post_draft_count = mysqli_num_rows($select_all_draft_posts);
+
+            $query = "SELECT * FROM posts WHERE post_status = 'Published'";
+            $select_all_published_posts = mysqli_query($connection, $query);
+            $post_published_count = mysqli_num_rows($select_all_published_posts);
+
+            $query = "SELECT * FROM comments WHERE comment_status = 'Unapproved'";
+            $unapproved_comments = mysqli_query($connection, $query);
+            $unapproved_comments_count = mysqli_num_rows($unapproved_comments);
+
+            $query = "SELECT * FROM users WHERE user_role = 'Subscriber'";
+            $select_all_subscribers = mysqli_query($connection, $query);
+            $subscribers_count = mysqli_num_rows($select_all_subscribers);
+            
+
+
+            ?>
+
 <div class="row">
                 <script type="text/javascript">
                 google.charts.load('current', {
